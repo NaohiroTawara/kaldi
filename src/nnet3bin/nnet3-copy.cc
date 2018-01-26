@@ -24,7 +24,7 @@
 #include "hmm/transition-model.h"
 #include "nnet3/am-nnet-simple.h"
 #include "nnet3/nnet-utils.h"
-
+#include "float.h"
 int main(int argc, char *argv[]) {
   try {
     using namespace kaldi;
@@ -35,6 +35,8 @@ int main(int argc, char *argv[]) {
         "Copy 'raw' nnet3 neural network to standard output\n"
         "Also supports setting all the learning rates to a value\n"
         "(the --learning-rate option)\n"
+        "And supports setting all the changeable paramter to a value\n"
+        "(the --parameter option)\n"
         "\n"
         "Usage:  nnet3-copy [options] <nnet-in> <nnet-out>\n"
         "e.g.:\n"
@@ -42,6 +44,7 @@ int main(int argc, char *argv[]) {
 
     bool binary_write = true;
     BaseFloat learning_rate = -1;
+    BaseFloat parameter = FLT_MAX;
     std::string nnet_config, edits_config, edits_str;
     BaseFloat scale = 1.0;
     bool prepare_for_test = false;
@@ -50,6 +53,9 @@ int main(int argc, char *argv[]) {
     po.Register("binary", &binary_write, "Write output in binary mode");
     po.Register("learning-rate", &learning_rate,
                 "If supplied, all the learning rates of updatable components"
+                "are set to this value.");
+    po.Register("parameter", &parameter,
+                "If supplied, all the changeable parameters of ChangeableParameter components"
                 "are set to this value.");
     po.Register("nnet-config", &nnet_config,
                 "Name of nnet3 config file that can be used to add or replace "
@@ -90,7 +96,8 @@ int main(int argc, char *argv[]) {
 
     if (learning_rate >= 0)
       SetLearningRate(learning_rate, &nnet);
-
+    if (parameter != FLT_MAX)
+      SetParameter(parameter, &nnet);
     if (scale != 1.0)
       ScaleNnet(scale, &nnet);
 

@@ -12,13 +12,14 @@ BINFILES = nnet3-init nnet3-info nnet3-get-egs nnet3-copy-egs nnet3-subset-egs \
    nnet3-am-adjust-priors nnet3-am-copy nnet3-compute-prob \
    nnet3-average nnet3-am-info nnet3-combine nnet3-latgen-faster \
    nnet3-latgen-faster-parallel nnet3-show-progress nnet3-align-compiled \
-   nnet3-copy nnet3-get-egs-dense-targets nnet3-compute \
+   nnet3-copy nnet3-get-egs-dense-targets nnet3-get-egs-dense-targets2 nnet3-compute \
    nnet3-discriminative-get-egs nnet3-discriminative-copy-egs \
    nnet3-discriminative-merge-egs nnet3-discriminative-shuffle-egs \
    nnet3-discriminative-compute-objf nnet3-discriminative-train \
    nnet3-discriminative-subset-egs nnet3-get-egs-simple \
    nnet3-discriminative-compute-from-egs nnet3-latgen-faster-looped \
-   nnet3-egs-augment-image nnet3-xvector-get-egs nnet3-xvector-compute
+   nnet3-egs-augment-image nnet3-xvector-get-egs nnet3-xvector-compute \
+   nnet3-xvector-get-egs2
 
 OBJFILES =
 
